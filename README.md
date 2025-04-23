@@ -1,4 +1,4 @@
 ## Screenshots
 
 ### HomeScreen
-![HomeScreen](../assets/HomeScreen.jpg)
+![HomeScreen](./assets/HomeScreen.jpg)
