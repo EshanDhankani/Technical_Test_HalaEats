@@ -11,6 +11,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome6 from "react-native-vector-icons/FontAwesome6";
 import { CartProvider, useCart } from "./CartContext";
 
+
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
 const CartStack = createNativeStackNavigator();
