@@ -3,14 +3,15 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity,
   Dimensions,
   Alert,
 } from "react-native";
 import React, { useState } from "react";
 import { useCart } from "../CartContext";
+import QuantitySelector from "../components/QuantitySelector";
+import AddToCartButton from "../components/AddToCartButton";
 
-const ProductDetailScreen = ({ route, navigation }) => {
+const ProductDetailScreen = ({ route }) => {
   const { product } = route.params;
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
@@ -34,22 +35,13 @@ const ProductDetailScreen = ({ route, navigation }) => {
       <Text style={styles.title}>{product.title}</Text>
       <Text style={styles.price}>{product.price}</Text>
 
-      <View style={styles.quantityContainer}>
-        <TouchableOpacity onPress={decreaseQty} style={styles.qtyButton}>
-          <Text style={styles.qtyText}>-</Text>
-        </TouchableOpacity>
-        <Text style={styles.qtyNumber}>{quantity}</Text>
-        <TouchableOpacity onPress={increaseQty} style={styles.qtyButton}>
-          <Text style={styles.qtyText}>+</Text>
-        </TouchableOpacity>
-      </View>
+      <QuantitySelector
+        quantity={quantity}
+        increaseQty={increaseQty}
+        decreaseQty={decreaseQty}
+      />
 
-      <TouchableOpacity
-        style={styles.addToCartButton}
-        onPress={handleAddToCart}
-      >
-        <Text style={styles.cartText}>Add to Cart</Text>
-      </TouchableOpacity>
+      <AddToCartButton onPress={handleAddToCart} />
     </View>
   );
 };
@@ -81,39 +73,4 @@ const styles = StyleSheet.create({
     color: "#666",
     marginBottom: 20,
   },
-  quantityContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginVertical: 20,
-  },
-  qtyButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: "#F0F0F0",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  qtyText: {
-    fontSize: 22,
-    fontWeight: "bold",
-  },
-  qtyNumber: {
-    fontSize: 20,
-    marginHorizontal: 15,
-  },
-  addToCartButton: {
-    backgroundColor: "#000",
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 12,
-    marginTop: 30,
-  },
-  cartText: {
-    color: "#FFF",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
 });
-
-
